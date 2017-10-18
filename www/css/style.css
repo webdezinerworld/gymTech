@@ -1,0 +1,6 @@
+/* Empty. Add your own CSS if you like */
+
+.homepage{background: url("../img/banner.jpg") no-repeat; background-size: cover;}
+.title-center.header-item{ background: url(); }
+#export{width:120px; margin:10px auto; padding: 0;line-height: 36px; min-height: 40px; min-width: 27px;}
+.borderRed{border:1px solid #ff0000 !important;}

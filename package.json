@@ -1,0 +1,30 @@
+{
+    "name": "myGym",
+    "version": "0.0.1",
+    "description": "An Ionic project",
+    "devDependencies": {
+        "@ionic/cli-plugin-cordova": "1.5.0",
+        "@ionic/cli-plugin-gulp": "1.1.0",
+        "gulp": "^3.5.6",
+        "gulp-clean-css": "^3.7.0",
+        "gulp-rename": "^1.2.0",
+        "gulp-sass": "^3.1.0",
+        "ionic": "3.6.0"
+    },
+    "dependencies": {
+        "cordova-plugin-camera": "^2.4.1",
+        "cordova-plugin-compat": "^1.1.0",
+        "cordova-plugin-facebook4": "^1.9.1",
+        "cordova-sqlite-storage": "^2.0.4"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-camera": {},
+            "cordova-plugin-facebook4": {
+                "APP_ID": "1809209159364462",
+                "APP_NAME": "siddharth shahi"
+            },
+            "cordova-sqlite-storage": {}
+        }
+    }
+}

@@ -1,0 +1,116 @@
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css">
+<ion-view view-title="Register">
+  <ion-content style="margin-top:50px;">
+    <form>
+      <button ng-click="captureImg()">Capture Photo</button>
+      <button ng-click="openGallery()">From Photo Library </button>
+      <div class="row">{{myImage}}
+        <img ng-src="{{myImage}}" ng-model="user.img" style="border:1px solid;width:80px;height:80px;" />
+      </div>
+
+      <label class="item item-input">
+        <span class="input-label">First Name</span>
+        <input id="fName" type="text" placeholder="First Name" ng-model="user.fName" required />
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Last Name</span>
+        <input id="lName" type="text" placeholder="Last Name" ng-model="user.lName" />
+      </label>
+      <!-- <label class="item item-input">
+        <span class="input-label">Gender</span>
+        <select id="role" name="timepass" class="custom-select" ng-model="user.role">
+            <option>Select</option>
+            <option>Male</option>
+            <option>Female</option>
+        </select>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Email Id</span>
+        <input id='emailAdd' type="email" placeholder="Email" ng-model="user.email" />
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Phone no.</span>
+        <input id='phoneAdd' type="number" placeholder="Phone no" ng-model="user.phone" required/>
+      </label> -->
+
+      <!-- <label class="item item-input">
+        <span class="input-label">Start Date</span>
+        <input type="text" id="startDate" placeholder="Start Date" ng-model="sDate"/>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">End Date</span>
+        <input type="text" id="endDate" placeholder="End Date" ng-model="eDate"/>
+      </label> -->
+      <a href="javascript:void(0)" class="button button-block button-positive" id ="export" role='button' ng-click="add(user)">Register</a>
+      <a href="javascript:void(0)" class="button button-block button-positive" id ="export" role='button' ng-click="getData()">Get data</a>
+    </form>
+    <div id="dvData">
+      <ul>
+        <li ng-repeat="item in items">
+        {{item}}
+          <img src="{{item.img}}">
+        </li>
+      </ul>
+    </div>
+  </ion-content>
+</ion-view>
+    <script type="text/javascript">
+      $(document).ready(function(){
+
+          $('#startDate, #endDate').datepicker({
+          beforeShow: setDateRange,
+          dateFormat: "mm/dd/yy",
+          firstDay: 1,
+          changeFirstDay: false,
+          onChange: function() { $(this).valid(); },
+          onSelect: function() {
+            if (this.id == 'startDate') {
+              // If selected start date is later than currently selected
+              // end date, set end date to start date + 1 day
+              var date = $('#startDate').datepicker('getDate');
+              if (date) { date.setDate(date.getDate() + 1); }
+              $('#endDate').datepicker('option', 'minDate', date);
+            }
+          }
+      });
+      
+
+
+      });
+
+    function setDateRange(input) {
+        var min = null, dateMin = min, dateMax = null, dayRange = 90;
+        var start = $('#startDate'), end = $('#endDate');
+        //if (opt.val() == '1') {
+            // Adjust min date for start date
+            if (input.id == 'startDate') {
+                // Set min date if end date has a value
+                if ($('#endDate').datepicker('getDate') != null) {
+                    dateMax = $('#endDate').datepicker('getDate');
+                    dateMin = $('#endDate').datepicker('getDate');
+                    dateMin.setDate(dateMin.getDate() - dayRange);
+                    if (dateMin < min) { dateMin = min; }
+                }
+            // Adjust max date for end date
+            } else if (input.id == 'endDate') {
+                dateMin = $('#startDate').datepicker('getDate');
+                // Set date range of 30 days
+                dateMax = new Date(dateMin.getFullYear(), dateMin.getMonth(), dateMin.getDate() + 90);
+                // Set max date if start date has a value
+                if ($('#startDate').datepicker('getDate') != null) {
+                    var rangeMax = new Date(dateMin.getFullYear(), dateMin.getMonth(), dateMin.getDate() + dayRange);
+                    if (rangeMax < dateMax) { dateMax = rangeMax; }
+                }
+            }
+        //}
+        return {
+            minDate: dateMin,
+            maxDate: dateMax
+        };
+    }
+
+
+
+
+
+    </script>
